@@ -1,0 +1,32 @@
+{
+  "name": "device-event-api",
+  "version": "1.0.0",
+  "description": "Express API that generates fake device events and sends them to Kafka using worker threads",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js",
+    "consumer": "node scripts/kafka-consumer.js",
+    "test:image": "node scripts/image-generation-test.js",
+    "kafka:clear": "node scripts/clear-kafka-topic.js",
+    "kafka:retention": "node scripts/update-kafka-retention.js",
+    "storage:stats": "node scripts/storage-stats.js",
+    "storage:cleanup": "node scripts/storage-cleanup.js",
+    "cameras:add": "node scripts/add-cameras.js",
+    "cameras:manage": "node scripts/manage-cameras.js"
+  },
+  "dependencies": {
+    "axios": "^1.12.2",
+    "canvas": "^3.2.0",
+    "dotenv": "^17.2.3",
+    "express": "^4.18.2",
+    "kafkajs": "^2.2.4",
+    "moment-timezone": "^0.6.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT"
+}

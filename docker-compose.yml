@@ -1,0 +1,38 @@
+services:
+  zookeeper:
+    image: confluentinc/cp-zookeeper:latest
+    container_name: clg_zookeeper
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+    restart: on-failure
+    ports:
+      - 2181:2181
+
+  kafka:
+    container_name: clg_kafka
+    image: confluentinc/cp-kafka:7.9.1
+    restart: on-failure
+    depends_on:
+      - zookeeper
+    environment:
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    ports:
+      - 9092:9092
+
+  kafbat-ui:
+    container_name: clg_kafbat-ui
+    restart: on-failure
+    image: ghcr.io/kafbat/kafka-ui
+    ports:
+      - 8081:8080
+    depends_on:
+      - kafka
+    environment:
+      DYNAMIC_CONFIG_ENABLED: 'true'
+      KAFKA_CLUSTERS_0_NAME: local_cluster
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: localhost:9092
+      AUTH_TYPE: "LOGIN_FORM"
+      SPRING_SECURITY_USER_NAME: admin
+      SPRING_SECURITY_USER_PASSWORD: 123456
