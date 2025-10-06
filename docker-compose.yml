@@ -25,14 +25,14 @@ services:
     container_name: clg_kafbat-ui
     restart: on-failure
     image: ghcr.io/kafbat/kafka-ui
-    ports:
-      - 8081:8080
+    network_mode: host
     depends_on:
       - kafka
     environment:
       DYNAMIC_CONFIG_ENABLED: 'true'
       KAFKA_CLUSTERS_0_NAME: local_cluster
       KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: localhost:9092
+      SERVER_PORT: 8081
       AUTH_TYPE: "LOGIN_FORM"
       SPRING_SECURITY_USER_NAME: admin
       SPRING_SECURITY_USER_PASSWORD: 123456

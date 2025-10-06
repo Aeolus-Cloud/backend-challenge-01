@@ -140,14 +140,12 @@ npm run cameras:manage # Interactive camera management
 ### Postman Collection
 Import `postman-collection.json` into Postman or Hoppscotch for easy API testing:
 - Pre-configured requests for all available endpoints
-- Variables for `baseUrl` and `deviceId`
-- Organized into folders: Health & Info, Device Management
-- Ready-to-use examples and test cases
+- Only requires `baseUrl` variable configuration
 
 **Setup:**
 1. Import the collection file
 2. Set `baseUrl` variable to `http://localhost:3000`
-3. Test all endpoints with one click
+3. Test all endpoints immediately with example data
 
 ## API Endpoints
 
@@ -157,9 +155,6 @@ Import `postman-collection.json` into Postman or Hoppscotch for easy API testing
 - `GET /api/devices` - List all active devices
 - `GET /api/devices/:id/status` - Get device status
 - `DELETE /api/devices/:id` - Remove device (stops events)
-
-### Monitoring
-- `GET /api/kafka/topic-info` - Kafka topic information
 
 ### Docker Compose Services
 - **API Server**: `http://localhost:3000`
